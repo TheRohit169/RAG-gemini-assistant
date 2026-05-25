@@ -1,0 +1,8 @@
+# Secrets
+backend/.env
+
+# Python environment and cache
+venv/
+__pycache__/
+*.pyc
+.DS_Store

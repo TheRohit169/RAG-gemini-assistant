@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenAI Support Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">🤖</div>
+        <span class="logo-text">RAG Assistant</span>
+      </div>
+
+      <button class="btn-new-chat" id="btnNewChat">
+        <span class="icon">＋</span> New Chat
+      </button>
+
+      <div class="sidebar-info">
+        <p class="sidebar-label">Powered by</p>
+        <ul class="tech-list">
+          <li>🔍 FAISS Vector Search</li>
+          <li>🧠 MiniLM Embeddings</li>
+          <li>✨ Gemini 2.5 Flash</li>
+          <li>⚡ FastAPI Backend</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main chat area -->
+    <main class="chat-main">
+
+      <!-- Header -->
+      <header class="chat-header">
+        <div class="header-left">
+          <h1 class="header-title">Company Support Assistant</h1>
+          <span class="header-subtitle">Ask me anything about HR, IT, or company policies</span>
+        </div>
+        <div class="header-meta">
+          <span class="status-dot"></span>
+          <span class="status-text">Online</span>
+        </div>
+      </header>
+
+      <!-- Messages -->
+      <section class="chat-messages" id="chatMessages">
+        <div class="welcome-card">
+          <div class="welcome-icon">👋</div>
+          <h2>Hello! I'm your support assistant.</h2>
+          <p>I can help you with questions about passwords, VPN, leave policy, expense claims, IT support, and more.</p>
+          <div class="suggestion-chips">
+            <button class="chip" onclick="sendSuggestion('How do I reset my password?')">🔑 Password reset</button>
+            <button class="chip" onclick="sendSuggestion('How do I set up VPN access?')">🌐 VPN setup</button>
+            <button class="chip" onclick="sendSuggestion('What is the leave policy?')">📅 Leave policy</button>
+            <button class="chip" onclick="sendSuggestion('How do I claim expenses?')">💰 Expense claims</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typing indicator -->
+      <div class="typing-indicator hidden" id="typingIndicator">
+        <div class="typing-bubble">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="typing-label">Searching knowledge base…</span>
+      </div>
+
+      <!-- Input area -->
+      <footer class="chat-input-area">
+        <div class="input-container">
+          <textarea
+            id="messageInput"
+            placeholder="Ask a question about HR, IT support, policies…"
+            rows="1"
+            maxlength="2000"
+          ></textarea>
+          <button class="btn-send" id="btnSend" title="Send message">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <p class="input-hint">Responses are grounded in the company knowledge base only.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
