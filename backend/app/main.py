@@ -40,7 +40,7 @@ app = FastAPI(
 # CORS – allow the frontend to reach the API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://rag-gemini-assistant-1.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
