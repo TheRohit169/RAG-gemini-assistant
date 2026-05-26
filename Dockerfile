@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install them first (cached layer)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r backend/requirements.txt
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application code
 COPY . .
