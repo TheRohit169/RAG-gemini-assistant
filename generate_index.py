@@ -8,8 +8,8 @@ from pathlib import Path
 sys.path.append(os.getcwd())
 
 # Now this import should work:
-from backend.app.services.embedding_service import EmbeddingService
-from backend.app.utils.chunking import chunk_documents
+from app.services.embedding_service import EmbeddingService
+from app.utils.chunking import chunk_documents
 
 def build_and_save_index():
     print("Starting index generation...")

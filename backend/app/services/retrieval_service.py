@@ -7,9 +7,9 @@ Retrieves relevant document chunks from FAISS using cosine similarity.
 from typing import List, Dict, Any, Tuple
 import os
 
-from backend.app.vectorstore.faiss_store import FAISSStore
-from backend.app.services.embedding_service import EmbeddingService
-from backend.app.utils.logger import get_logger
+from app.vectorstore.faiss_store import FAISSStore
+from app.services.embedding_service import EmbeddingService
+from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
