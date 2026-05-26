@@ -75,7 +75,13 @@ async def startup_event():
     with open(chunks_path, "r", encoding="utf-8") as f:
         chunks = json.load(f)
     
+    # Initialise Embedding Service and warm up the model
     embedding_service = EmbeddingService()
+    try:
+        embedding_service.model.warmup()
+        logger.info("Embedding model warmed up successfully.")
+    except Exception as e:
+        logger.warning(f"Could not warm up embedding model (this may be normal depending on the model): {e}")
     
     faiss_store = FAISSStore(dimension=index.d) 
     faiss_store.index = index 
