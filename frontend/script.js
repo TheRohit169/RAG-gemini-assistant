@@ -6,7 +6,7 @@
  */
 
 // ── Configuration ──────────────────────────────────────────────────────────
-const API_BASE = "http://localhost:8000"; // Change to your deployed backend URL
+const API_BASE = "https://rag-gemini-assistant.onrender.com";
 
 // ── Session management ─────────────────────────────────────────────────────
 function getSessionId() {
