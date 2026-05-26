@@ -7,8 +7,8 @@ FastAPI router for /api/chat and /health endpoints.
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 
-from app.models.schemas import ChatRequest, ChatResponse, HealthResponse
-from app.utils.logger import get_logger
+from backend.app.models.schemas import ChatRequest, ChatResponse, HealthResponse
+from backend.app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
