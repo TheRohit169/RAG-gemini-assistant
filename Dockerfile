@@ -1,5 +1,5 @@
 # Use a slim Python image to keep the build fast
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
