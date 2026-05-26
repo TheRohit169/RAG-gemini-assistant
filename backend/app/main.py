@@ -15,14 +15,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.routes.chat import router
-from app.services.embedding_service import EmbeddingService
-from app.services.llm_service import LLMService
-from app.services.memory_service import MemoryService
-from app.services.rag_service import RAGService
-from app.services.retrieval_service import RetrievalService
-from app.utils.logger import get_logger
-from app.vectorstore.faiss_store import FAISSStore
+from backend.app.routes.chat import router
+from backend.app.services.embedding_service import EmbeddingService
+from backend.app.services.llm_service import LLMService
+from backend.app.services.memory_service import MemoryService
+from backend.app.services.rag_service import RAGService
+from backend.app.services.retrieval_service import RetrievalService
+from backend.app.utils.logger import get_logger
+from backend.app.vectorstore.faiss_store import FAISSStore
 
 # Load environment variables from .env
 load_dotenv()
