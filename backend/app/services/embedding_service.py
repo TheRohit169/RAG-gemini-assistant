@@ -11,7 +11,7 @@ from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-MODEL_NAME = "all-MiniLM-L6-v2"
+MODEL_NAME = "paraphrase-MiniLM-L3-v2"
 
 class EmbeddingService:
     """Singleton-style service that loads the model only when first needed."""
