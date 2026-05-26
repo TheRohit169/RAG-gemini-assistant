@@ -5,7 +5,7 @@ Splits document content into overlapping chunks for embedding.
 """
 
 from typing import List, Dict, Any
-from app.utils.logger import get_logger
+from backend.app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 

@@ -10,10 +10,10 @@ Orchestrates the full RAG pipeline:
 
 from typing import Dict, Any
 
-from app.services.retrieval_service import RetrievalService
-from app.services.llm_service import LLMService
-from app.services.memory_service import MemoryService
-from app.utils.logger import get_logger
+from backend.app.services.retrieval_service import RetrievalService
+from backend.app.services.llm_service import LLMService
+from backend.app.services.memory_service import MemoryService
+from backend.app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 

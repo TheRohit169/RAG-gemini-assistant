@@ -7,7 +7,7 @@ In-memory session-based conversation history (last 5 pairs per session).
 from typing import List, Dict
 from collections import defaultdict
 
-from app.utils.logger import get_logger
+from backend.app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 

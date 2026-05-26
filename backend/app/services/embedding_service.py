@@ -7,7 +7,7 @@ Implements singleton lazy loading to minimize memory footprint.
 
 from typing import List, Union
 import numpy as np
-from app.utils.logger import get_logger
+from backend.app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
