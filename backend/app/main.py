@@ -48,6 +48,11 @@ app.add_middleware(
 
 app.include_router(router, prefix="/api")
 
+# ── Health check endpoint ────────────────────────────────────────────────────
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 
 # ── Startup event ─────────────────────────────────────────────────────────────
 
