@@ -1,8 +1,8 @@
 """
 embedding_service.py
 --------------------
-Generates sentence embeddings using sentence-transformers (MiniLM-L6-v2).
-Implements lazy loading to minimize memory footprint during startup.
+Generates sentence embeddings using sentence-transformers (MiniLM-L3-v2).
+Implements singleton lazy loading to minimize memory footprint.
 """
 
 from typing import List, Union
@@ -14,28 +14,38 @@ logger = get_logger(__name__)
 MODEL_NAME = "paraphrase-MiniLM-L3-v2"
 
 class EmbeddingService:
-    """Singleton-style service that loads the model only when first needed."""
+    _model = None
+    _dimension = None
 
     def __init__(self):
-        self._model = None
-        self._dimension = None
+        # Do not load the model here to keep startup light
+        pass
+
+    def load_model(self):
+        """Internal helper to load the model."""
+        from sentence_transformers import SentenceTransformer
+        logger.info(f"Lazy loading embedding model: {MODEL_NAME}")
+        model = SentenceTransformer(MODEL_NAME)
+        self._dimension = model.get_sentence_embedding_dimension()
+        logger.info(f"Model loaded. Embedding dimension: {self._dimension}")
+        return model
+
+    def get_model(self):
+        """Returns the model instance, loading it only if not already loaded."""
+        if EmbeddingService._model is None:
+            EmbeddingService._model = self.load_model()
+        return EmbeddingService._model
 
     @property
     def model(self):
-        """Lazy load the SentenceTransformer model."""
-        if self._model is None:
-            from sentence_transformers import SentenceTransformer
-            logger.info(f"Lazy loading embedding model: {MODEL_NAME}")
-            self._model = SentenceTransformer(MODEL_NAME)
-            self._dimension = self._model.get_sentence_embedding_dimension()
-            logger.info(f"Model loaded. Embedding dimension: {self._dimension}")
-        return self._model
+        """Compatibility property for existing code."""
+        return self.get_model()
 
     @property
     def dimension(self):
-        """Returns the embedding dimension, loading the model if necessary."""
+        """Returns the embedding dimension."""
         if self._dimension is None:
-            _ = self.model  # Trigger lazy load
+            self.get_model()  # Trigger load
         return self._dimension
 
     def embed(self, texts: Union[str, List[str]]) -> np.ndarray:
@@ -45,8 +55,8 @@ class EmbeddingService:
         if isinstance(texts, str):
             texts = [texts]
 
-        # Access self.model to trigger lazy loading if not already loaded
-        embeddings = self.model.encode(
+        # Trigger lazy loading via get_model()
+        embeddings = self.get_model().encode(
             texts,
             convert_to_numpy=True,
             show_progress_bar=False,
