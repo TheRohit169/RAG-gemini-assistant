@@ -95,7 +95,9 @@ async def startup_event():
 
     logger.info("=== All services initialised from file. Ready to serve requests. ===")
 
-
+@app.post("/chat")
+async def chat(session_id: str, question: str, rag: RAGService = Depends(get_rag_service)):
+    return rag.answer(session_id, question)
 # ── Dev runner ────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":

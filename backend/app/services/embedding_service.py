@@ -18,7 +18,6 @@ class EmbeddingService:
     _dimension = None
 
     def __init__(self):
-        # Do not load the model here to keep startup light
         pass
 
     def load_model(self):
@@ -45,7 +44,7 @@ class EmbeddingService:
     def dimension(self):
         """Returns the embedding dimension."""
         if self._dimension is None:
-            self.get_model()  # Trigger load
+            self.get_model()  
         return self._dimension
 
     def embed(self, texts: Union[str, List[str]]) -> np.ndarray:
