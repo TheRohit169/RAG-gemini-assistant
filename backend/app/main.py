@@ -54,12 +54,17 @@ app.include_router(router, prefix="/api")
 @app.on_event("startup")
 async def startup_event():
     logger.info("=== Application startup (Static Loading) ===")
-    index_path = Path(__file__).parent.parent / "vector_store.index"
-    chunks_path = Path(__file__).parent.parent / "chunks.json"
+    
+    root_dir = Path(__file__).resolve().parent.parent.parent
+    index_path = root_dir / "vector_store.index"
+    chunks_path = root_dir / "chunks.json"
+    
+    logger.info(f"Looking for index at: {index_path}")
+    logger.info(f"Looking for chunks at: {chunks_path}")
     
     if not index_path.exists() or not chunks_path.exists():
-        logger.error("Pre-built index or chunks file not found! Ensure they are in the project root.")
-        raise FileNotFoundError("Required initialization files missing.")
+        logger.error(f"Files not found at {root_dir}")
+        raise FileNotFoundError(f"Required initialization files missing at {root_dir}")
 
     index = faiss.read_index(str(index_path))
     with open(chunks_path, "r", encoding="utf-8") as f:
